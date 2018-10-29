@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "MEANING")
 public class MeaningSkils {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idMeaning;
 	@Column(name = "LEVEL")
 	private int level;
@@ -68,6 +68,12 @@ public class MeaningSkils {
 	public MeaningSkils() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public MeaningSkils(int level, String desciption) {
+		super();
+		this.level = level;
+		this.desciption = desciption;
 	}
 
 }

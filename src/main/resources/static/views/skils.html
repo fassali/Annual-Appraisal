@@ -1,0 +1,42 @@
+
+<div class="container">
+
+	<table class="table table-borderless table-striped table-earning">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>libelle</th>
+				<th>level</th>
+				<th>desciption</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="sk in skils">
+
+			<tr>
+				<td rowspan="{{sk.meaningSkils.length + 1}}">{{ sk.idSkils }}</td>
+				<td rowspan="{{sk.meaningSkils.length + 1}}">{{ sk.libelleSkils
+					}}</td>
+			</tr>
+
+
+			<tr ng-repeat="meaning in sk.meaningSkils">
+
+				<td>{{ meaning.level }}</td>
+				<td>{{ meaning.desciption }}</td>
+									<td>
+						<!-- <button class="btn"  ><i class="fa fa-eye"></i></button> -->
+						<!--ng-click="onclickee(sk.idSkils,meaning.idMeaning)" -->
+						<button class="btn"
+						ui-sref="updateskils({ id: sk.idSkils,idm: meaning.idMeaning})"
+							>
+							<i class="fa fa-edit"></i>
+						</button>
+						<button class="btn" data-toggle="modal" data-target="#myModal" >
+							<i class="fa fa-trash"></i>
+						</button>
+					</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
