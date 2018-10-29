@@ -15,8 +15,14 @@ public class ApEmploye implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idApEmp;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@JsonIgnore
+    @JoinColumn(name="id_ann")
     private AnnualSession annualSession;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@JsonIgnore
+    @JoinColumn(name="id_emp")
     private Employe employe;
 
     private String addFBack;
@@ -38,10 +44,10 @@ public class ApEmploye implements Serializable {
     private Set<ApFeedBack> apFeedBacks = new HashSet<>(0);
 
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "apEmploye", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<ApHardSkill> apHardSkills = new HashSet<>(0);
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<ApObjEmp> apObjEmps = new HashSet<>(0);
 

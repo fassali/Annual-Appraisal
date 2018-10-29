@@ -1,9 +1,8 @@
 package com.ymagis.appraisal.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,6 +13,9 @@ public class ApObjEmp implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idApObjEmp;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@JsonIgnore
+    @JoinColumn(name = "id_ap_emp")
     private ApEmploye apEmploye;
 
     private String indicator;

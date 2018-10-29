@@ -1,9 +1,6 @@
 package com.ymagis.appraisal.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 public class ApFeedBack implements Serializable {
@@ -11,8 +8,14 @@ public class ApFeedBack implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idApFdBach;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@JsonIgnore
+    @JoinColumn(name = "id_fd_back")
     private FeedBack feedBack;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@JsonIgnore
+    @JoinColumn(name = "id_ap_emp")
     private ApEmploye apEmploye;
 
     private  String comment;
