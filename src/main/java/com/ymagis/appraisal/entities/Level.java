@@ -15,6 +15,9 @@ import java.util.Set;
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idLevel;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@JsonIgnore
+    @JoinColumn(name = "id_soft_skill")
     private SoftSkill softSkill;
 
     private String degree;
