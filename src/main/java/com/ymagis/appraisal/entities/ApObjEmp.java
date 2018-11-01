@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.security.AllPermission;
+import java.util.*;
 
 @Entity
 public class ApObjEmp implements Serializable {
@@ -13,10 +14,10 @@ public class ApObjEmp implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idApObjEmp;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    //@JsonIgnore
+    /*@ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name = "id_ap_emp")
-    private ApEmploye apEmploye;
+    private ApEmploye apEmploye;*/
 
     private String indicator;
 
@@ -26,16 +27,32 @@ public class ApObjEmp implements Serializable {
 
     private Date deadLine;
 
+    private String comment;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    //@JsonIgnore
+    @JoinColumn(name = "id_rating")
+    private Rating rating;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "apObjEmps")
+    private Set<ApEmploye> apEmployes;
+
     public ApObjEmp() {
     }
 
-    public ApObjEmp(Long idApObjEmp, ApEmploye apEmploye, String indicator, String labelObj, String mean, Date deadLine) {
+    public ApObjEmp(Long idApObjEmp, String indicator,
+                    String labelObj, String mean, Date deadLine, String comment, Rating rating,
+                    Set<ApEmploye> apEmployes) {
         this.idApObjEmp = idApObjEmp;
-        this.apEmploye = apEmploye;
+        //this.apEmploye = apEmploye;
         this.indicator = indicator;
         this.labelObj = labelObj;
         this.mean = mean;
         this.deadLine = deadLine;
+        this.comment = comment;
+        this.rating = rating;
+        this.apEmployes = apEmployes;
     }
 
     public Long getIdApObjEmp() {
@@ -44,14 +61,6 @@ public class ApObjEmp implements Serializable {
 
     public void setIdApObjEmp(Long idApObjEmp) {
         this.idApObjEmp = idApObjEmp;
-    }
-
-    public ApEmploye getApEmploye() {
-        return apEmploye;
-    }
-
-    public void setApEmploye(ApEmploye apEmploye) {
-        this.apEmploye = apEmploye;
     }
 
     public String getIndicator() {
@@ -84,5 +93,29 @@ public class ApObjEmp implements Serializable {
 
     public void setDeadLine(Date deadLine) {
         this.deadLine = deadLine;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public Set<ApEmploye> getApEmployes() {
+        return apEmployes;
+    }
+
+    public void setApEmployes(Set<ApEmploye> apEmployes) {
+        this.apEmployes = apEmployes;
     }
 }

@@ -18,7 +18,7 @@ public class FeedBack implements Serializable {
     private String label;
 
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "feedBack", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<ApFeedBack> apFeedBacks = new HashSet<>(0);
 
 

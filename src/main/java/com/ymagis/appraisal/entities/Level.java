@@ -8,14 +8,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-
+@Table(name = "level")
  class Level implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idLevel;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = CascadeType.ALL)
     //@JsonIgnore
     @JoinColumn(name = "id_soft_skill")
     private SoftSkill softSkill;
@@ -25,7 +25,7 @@ import java.util.Set;
     private String mean;
 
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "level", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<ApSoftSkill> apSoftSkills = new HashSet<>(0);
 
     public Level() {
