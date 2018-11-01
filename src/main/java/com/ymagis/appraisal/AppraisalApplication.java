@@ -5,15 +5,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.ymagis.appraisal.dao.SkilsRepository;
-import com.ymagis.appraisal.model.MeaningSkils;
-import com.ymagis.appraisal.model.Skils;
+
 
 @SpringBootApplication
 public class AppraisalApplication implements CommandLineRunner{
 
-	@Autowired
-	private SkilsRepository skilsRepository;
+	
     public static void main(String[] args) {
         SpringApplication.run(AppraisalApplication.class, args);
     }

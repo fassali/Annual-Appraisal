@@ -1,0 +1,64 @@
+
+<div class="container" ng-controller="updateskilsCtrl">
+	<br>
+	<div class="card "
+		>
+		<div class="card-header" style="text-align: center;">
+			<h5>Update Skils {{skils.label}}</h5>
+		</div>
+		<div class="card-body formulaire" style="padding: 15px;">
+			<form name="formupdateskil" novalidate>
+<!-- 				<div class="row">
+					<label class="col-md-2">libelle </label> <input type="text"
+						class="form-control col-md-6" ng-model="skils.label"
+						name="libelleSkils" placeholder="libelle skils" >
+
+				</div>
+				<div class="row">
+					<label class="col-md-2">type </label> 			
+						<div class="col-md-6" style="text-align: center;">
+							<label>Soft Skils</label> <input type="radio"
+						ng-model="skils.code" value="soft">
+						<label>Managerial Skils</label>
+                         <input type="radio"
+						ng-model="skils.code" value="managerial">
+						</div>
+				</div> -->
+				<div class="row">
+					<label class="col-md-2">level</label> <input type="text"
+						class="form-control col-md-6" ng-model="level.degree"
+						name="level" placeholder="meaninig level" >
+
+				</div>
+				<div class="row">
+					<label class="col-md-2">desciption</label> <input type="text"
+						class="form-control col-md-6" ng-model="level.mean"
+						name="desciption" placeholder="meaninig desciption" >
+
+				</div>
+		</div>
+		<div class="card-footer">
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+
+					<button type="submit" class="btn btn-success"
+						ng-disabled="formupdateskil.$invalid" type="button"
+						ng-click="update()">update</button>
+
+
+				</div>
+
+			</div>
+
+
+
+
+			</form>
+
+		</div>
+
+
+	</div>
+	
+
+</div>
