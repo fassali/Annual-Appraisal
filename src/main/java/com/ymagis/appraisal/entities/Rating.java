@@ -18,16 +18,21 @@ public class Rating implements Serializable {
     private String label;
 
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "rating",cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<ApHardSkill> apHardSkills = new HashSet<>(0);
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "rating", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    private Set<ApObjEmp> apObjEmps = new HashSet<>(0);
 
     public Rating() {
     }
 
-    public Rating(String code, String label, Set<ApHardSkill> apHardSkills) {
+    public Rating(String code, String label, Set<ApHardSkill> apHardSkills, Set<ApObjEmp> apObjEmps) {
         this.code = code;
         this.label = label;
         this.apHardSkills = apHardSkills;
+        this.apObjEmps = apObjEmps;
     }
 
     public Long getIdRating() {
@@ -60,5 +65,13 @@ public class Rating implements Serializable {
 
     public void setApHardSkills(Set<ApHardSkill> apHardSkills) {
         this.apHardSkills = apHardSkills;
+    }
+
+    public Set<ApObjEmp> getApObjEmps() {
+        return apObjEmps;
+    }
+
+    public void setApObjEmps(Set<ApObjEmp> apObjEmps) {
+        this.apObjEmps = apObjEmps;
     }
 }

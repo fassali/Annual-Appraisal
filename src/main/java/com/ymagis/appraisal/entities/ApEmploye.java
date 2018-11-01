@@ -20,7 +20,7 @@ public class ApEmploye implements Serializable {
     @JoinColumn(name="id_ann")
     private AnnualSession annualSession;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = CascadeType.ALL)
     //@JsonIgnore
     @JoinColumn(name="id_emp")
     private Employe employe;
@@ -40,7 +40,7 @@ public class ApEmploye implements Serializable {
     private String tbImproved;
 
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "apEmploye", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<ApFeedBack> apFeedBacks = new HashSet<>(0);
 
     @JsonIgnore
@@ -48,11 +48,14 @@ public class ApEmploye implements Serializable {
     private Set<ApHardSkill> apHardSkills = new HashSet<>(0);
 
     //@JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private Set<ApObjEmp> apObjEmps = new HashSet<>(0);
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    /*@JoinTable(name = "apEmploye_apObjEmp", joinColumns = @JoinColumn(name = "id_Ap_Emp", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_ap_obj_emp", referencedColumnName = "id"))*/
+    @JoinTable(name = "ap_employe_ap_objEmp", joinColumns = @JoinColumn(name = "id_ap_amp"), inverseJoinColumns = @JoinColumn(name = "id_ap_obj_emp"))
+    private Set<ApObjEmp> apObjEmps;
 
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "apEmploye", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<ApSoftSkill> apSoftSkills = new HashSet<>(0);
 
     public ApEmploye() {

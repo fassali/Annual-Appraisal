@@ -14,6 +14,8 @@ public class ApHardSkill implements Serializable {
     @JoinColumn(name = "id_ap_emp")
     private ApEmploye apEmploye;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_rating")
     private Rating rating;
 
     private String skill;

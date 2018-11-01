@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "annual_session")
 public class AnnualSession implements Serializable {
 
     @Id
@@ -19,14 +20,13 @@ public class AnnualSession implements Serializable {
     private String status;
 
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private Set<ApSoftSkill> apSoftSkills = new HashSet<>(0);
+    @OneToMany(mappedBy = "annualSession" ,cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private Set<ApEmploye> apEmployes;
 
-
-    public AnnualSession(String label, String status, Set<ApSoftSkill> apSoftSkills) {
+    public AnnualSession(String label, String status, Set<ApEmploye> apEmployes) {
         this.label = label;
         this.status = status;
-        this.apSoftSkills = apSoftSkills;
+        this.apEmployes = apEmployes;
     }
 
     public AnnualSession() {
@@ -56,11 +56,11 @@ public class AnnualSession implements Serializable {
         this.status = status;
     }
 
-    public Set<ApSoftSkill> getApSoftSkills() {
-        return apSoftSkills;
+    public Set<ApEmploye> getApEmployes() {
+        return apEmployes;
     }
 
-    public void setApSoftSkills(Set<ApSoftSkill> apSoftSkills) {
-        this.apSoftSkills = apSoftSkills;
+    public void setApEmployes(Set<ApEmploye> apEmployes) {
+        this.apEmployes = apEmployes;
     }
 }

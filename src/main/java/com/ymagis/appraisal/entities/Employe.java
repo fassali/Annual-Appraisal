@@ -25,13 +25,13 @@ public class Employe implements Serializable {
 
     private Date dateEntry;
 
-    private String mFistName;
+    private String mFirstName;
 
     private String mLastName;
 
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private Set<ApEmploye> apEmployes = new HashSet<>(0);
+    @OneToMany(mappedBy = "employe", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private Set<ApEmploye> apEmployes;
 
     public Employe() {
     }
@@ -42,7 +42,7 @@ public class Employe implements Serializable {
         this.position = position;
         this.team = team;
         this.dateEntry = dateEntry;
-        this.mFistName = mFistName;
+        this.mFirstName = mFistName;
         this.mLastName = mLastName;
         this.apEmployes = apEmployes;
     }
@@ -95,12 +95,12 @@ public class Employe implements Serializable {
         this.dateEntry = dateEntry;
     }
 
-    public String getmFistName() {
-        return mFistName;
+    public String getmFirstName() {
+        return mFirstName;
     }
 
-    public void setmFistName(String mFistName) {
-        this.mFistName = mFistName;
+    public void setmFirstName(String mFirstName) {
+        this.mFirstName = mFirstName;
     }
 
     public String getmLastName() {
