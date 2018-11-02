@@ -52,7 +52,7 @@ public class SoftSkilsController {
 	public SoftSkill saveSkilslevel(@RequestBody SoftSkill skils) {
 		Optional<SoftSkill> skill = skilsRepository.findById(skils.getIdSoftSkill());
 		for(Level level : skils.getLevels())
-			if(((level.getIdLevel() == null))&&(skils.getLevels().size()!= 1)) {
+			if(((level.getIdLevel() == null))&&(skils.getLevels().size()!= 0)) {
 			for(Level level2 : skils.getLevels())
 				if((level.getDegree() == level2.getDegree())&&(level2.getIdLevel() != null))
 					 throw new RuntimeException("level  "+level.getDegree()+" existe deja");
@@ -60,7 +60,7 @@ public class SoftSkilsController {
 					level.setSoftSkill(skils);
 			}else{
 				for(Level levl : skill.get().getLevels())
-					if(level.getDegree() == levl.getDegree())
+					if((level.getDegree() == levl.getDegree())&&(level.getIdLevel() != levl.getIdLevel()))
 						throw new RuntimeException("level  "+level.getDegree()+" existe deja");
 					else
 				       level.setSoftSkill(skils);
