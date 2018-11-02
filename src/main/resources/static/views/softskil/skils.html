@@ -1,39 +1,33 @@
 
 <div class="container" ng-init="init()">
-
+<button class="btn" ui-sref="newskils">Nouveau</button>
 	<table class="table ">
 		<thead>
 			<tr>
 				<th>#</th>
 				<th>libelle</th>
 				<th>type</th>
-				<th>level</th>
-				<th>desciption</th>
 			</tr>
 		</thead>
-		<tbody ng-repeat="sk in skils">
+		<tbody >
 
-			<tr>
-				<td rowspan="{{sk.levels.length + 1}}">{{ sk.idSoftSkill }}</td>
-				<td rowspan="{{sk.levels.length + 1}}">{{ sk.label
+
+
+			<tr ng-repeat="sk in skils">
+
+				<td >{{ sk.idSoftSkill }}</td>
+				<td >{{ sk.label
 					}}</td>
-					<td rowspan="{{sk.levels.length + 1}}">{{ sk.code}}</td>
-			</tr>
-
-
-			<tr ng-repeat="meaning in sk.levels">
-
-				<td>{{ meaning.degree }}</td>
-				<td>{{ meaning.mean }}</td>
-									<td>
+					<td >{{ sk.code}}</td>
+									<td><!-- " -->
 						<button class="btn"
-						ui-sref="updateskils({ id: sk.idSoftSkill,idm: meaning.idLevel})"
+						ui-sref="updateskils({ id: sk.idSoftSkill})"
 							>
 							<i class="fa fa-edit"></i>
 						</button>
-<!-- 						<button class="btn" data-toggle="modal" data-target="#myModal" >
+<!-- 			<button class="btn" data-toggle="modal" data-target="#myModal" >
 							<i class="fa fa-trash"></i>
-						</button> -->
+						</button> --> 
 					</td>
 			</tr>
 		</tbody>
@@ -52,3 +46,5 @@
 				ng-click="gotonext()">&raquo;</a></li>
 		</ul>
 	</div>
+	
+	

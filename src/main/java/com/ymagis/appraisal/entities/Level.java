@@ -8,24 +8,34 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "level")
 
 public class Level implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idLevel;
-	@JsonIgnore
-	private SoftSkill softSkill;
+
 
 	private int degree;
 
-	private String mean;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "id_soft_skill")
+    private SoftSkill softSkill;
 
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<ApSoftSkill> apSoftSkills = new HashSet<>(0);
+
+	private String mean;
+	private boolean isRemoved;
+    @JsonIgnore
+    @OneToMany(mappedBy = "level", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private Set<ApSoftSkill> apSoftSkills = new HashSet<>(0);
+
+
 
 	public Level() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -79,4 +89,18 @@ public class Level implements Serializable {
 	public void setApSoftSkills(Set<ApSoftSkill> apSoftSkills) {
 		this.apSoftSkills = apSoftSkills;
 	}
+
+
+	public boolean isRemoved() {
+		return isRemoved;
+	}
+
+
+	public void setRemoved(boolean isRemoved) {
+		this.isRemoved = isRemoved;
+	}
+
+
+
+	
 }

@@ -19,9 +19,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
            controller  :   "newSkilsCtrl"
        })
           .state('updateskils', {
-           url: '/skils/:id/meaning/:idm',
+           url: '/skils/:id',
            templateUrl: 'views/softskil/updateskils.html',
-           controller  :   "updateskilsCtrl"
+           controller  :   "newSkilsCtrl"
        })      
        .state('newApskils', {
            url: '/apskil/save',

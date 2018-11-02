@@ -1,53 +1,8 @@
-<md-content>
+<!-- <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Nouveau Skils">
         <md-content class="md-padding container">
-          	<div class="card ">
-		<div class="card-header" style="text-align: center;">
-			<h5>Nouveau Skils</h5>
-		</div>
-		<div class="card-body formulaire" style="padding: 15px;">
-			<form name="formNewskil" novalidate>
-				<div class="row">
-					<label class="col-md-2">libelle </label> <input type="text"
-						class="form-control col-md-6" ng-model="newskils.label"
-						name="libelleSkils" placeholder="libelle skils" >
-
-				</div>
-				<br>
-				<div class="row">
-				<label class="col-md-2">type </label>
-				<div class="col-md-6" style="text-align: center;">
-							<label>Soft Skils</label> <input type="radio"
-						ng-model="newskils.code" value="soft">
-						<label>Managerial Skils</label>
-                         <input type="radio"
-						ng-model="newskils.code" value="managerial">
-						</div>
-				</div>
-		</div>
-		<div class="card-footer">
-			<div class="row">
-				<div class="col-md-12" style="text-align: center;">
-
-					<button type="submit" class="btn btn-success"
-						ng-disabled="formNewskil.$invalid" type="button"
-						ng-click="save()">Save</button>
-
-
-				</div>
-
-			</div>
-
-
-
-
-			</form>
-
-		</div>
-
-
-	</div>
+          	
           </md-content>
       </md-tab>
       <md-tab label="Nouveau meaning">
@@ -124,6 +79,54 @@
 
     </md-tabs>
   </md-content>
+  
+   -->
+  <div class="card ">
+		<div class="card-header" style="text-align: center;">
+			<h5>Nouveau Skils</h5>
+		</div>
+		<div class="card-body formulaire" style="padding: 15px;">
+			<form name="formNewskil" novalidate>
+				<div class="row">
+					<label class="col-md-2">libelle </label> <input type="text"
+						class="form-control col-md-6" ng-model="newskils.label"
+						name="libelleSkils" placeholder="libelle skils" >
+
+				</div>
+				<br>
+				<div class="row">
+				<label class="col-md-2">type </label>
+				<div class="col-md-6" style="text-align: center;">
+							<label>Soft Skils</label> <input type="radio"
+						ng-model="newskils.code" value="soft">
+						<label>Managerial Skils</label>
+                         <input type="radio"
+						ng-model="newskils.code" value="managerial">
+						</div>
+				</div>
+		</div>
+		<div class="card-footer">
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+
+					<button type="submit" class="btn btn-success"
+						ng-disabled="formNewskil.$invalid" type="button"
+						ng-click="save()">Save</button>
+
+
+				</div>
+
+			</div>
+
+
+
+
+			</form>
+
+		</div>
+
+
+	</div>
 <!-- <div class="container" ng-controller="newSkilsCtrl">
 	<br>
 	<div class="card ">

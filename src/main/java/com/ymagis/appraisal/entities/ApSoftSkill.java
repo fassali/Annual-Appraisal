@@ -1,9 +1,8 @@
 package com.ymagis.appraisal.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 public class ApSoftSkill implements Serializable {
@@ -11,8 +10,16 @@ public class ApSoftSkill implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idApStSkill;
 
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    //@JsonIgnore
+    @JoinColumn(name = "id_level")
+
     private Level level;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    //@JsonIgnore
+    @JoinColumn(name = "id_ap_emp")
     private ApEmploye apEmploye;
 
     public ApSoftSkill() {
@@ -25,7 +32,6 @@ public class ApSoftSkill implements Serializable {
     public void setIdApStSkill(Long idApStSkill) {
         this.idApStSkill = idApStSkill;
     }
-
 
 
     public Level getLevel() {

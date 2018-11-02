@@ -8,18 +8,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "soft_skill")
 public class SoftSkill implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idSoftSkill;
 
     private String code;
-
+    private boolean isRemoved;
     private String label;
 
-   
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private Set<Level> levels = new HashSet<>(0);
+
+    //@JsonIgnore
+    @OneToMany(mappedBy = "softSkill", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private Set<Level> levels;
+
 
     public SoftSkill() {
     }
@@ -61,4 +64,15 @@ public class SoftSkill implements Serializable {
     public void setLevels(Set<Level> levels) {
         this.levels = levels;
     }
+
+	public boolean isRemoved() {
+		return isRemoved;
+	}
+
+	public void setRemoved(boolean isRemoved) {
+		this.isRemoved = isRemoved;
+	}
+
+
+    
 }

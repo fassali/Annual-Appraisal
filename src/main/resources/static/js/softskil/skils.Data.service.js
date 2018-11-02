@@ -74,6 +74,19 @@ app.service("skilsDataService",function ($http,$location) {
 
             });
         };
+        // update skils
+        this.updSkils = function(skils){
+
+
+        	return  $http.put("http://localhost:8080/skils/"+skils.idSoftSkill+"/update",skils)
+            .then(function mySuccess(response) {
+            	
+            	return response.data;
+            }, function myError(response) {
+               
+
+            });
+        };
         //
         // ajouter un level
         this.newLevel = function(skils){
