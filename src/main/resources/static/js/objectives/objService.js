@@ -38,7 +38,6 @@ app.service("objService",function ($http,$location) {
 
     // recuperer la liste des objectifs de l'année dernièr
     this.updateObjectives = function(listObj){
-        console.log(listObj);
         return $http.put("http://localhost:8080/Objectives/",listObj)
             .then(function mySuccess(response) {
                 //console.log("kkkkkkkkk " + response.data);
@@ -46,20 +45,31 @@ app.service("objService",function ($http,$location) {
             }, function myError(error) {
                 console.log(error.data);
             });
+    };
 
-        /*var promise1 = $http({
-            method : "PUT",
-            url : "http://localhost:8080/Objectives/",
+    this.startNewSess = function(){
+        return $http.put("http://localhost:8080/StartNewSess")
+            .then(function mySuccess(response) {
+                return response.data;
+            }, function myError(error) {
+                console.log(error.data);
+            });
+    };
+
+    this.startNewSess = function(){
+        var promise1    =   $http({
+            method : "POST",
+            url : "http://localhost:8080/StartNewSess"
         });
 
-        var promise2 = promise1.then(function mySuccess(response) {
+        var startNewSess = promise1.then(function mySuccess(response) {
             return response.data;
             console.log(response.data);
 
         }, function myError(error) {
             console.log(error)
         });
-        return promise2;*/
+        return promise2;
     };
 
 })

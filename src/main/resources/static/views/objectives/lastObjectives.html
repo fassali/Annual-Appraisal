@@ -21,14 +21,14 @@
         <td>{{obj.labelObj}}</td>
         <td>{{obj.indicator}}</td>
         <td>{{obj.mean}}</td>
-        <td>{{obj.deadLine}}</td>
+        <td>{{obj.deadLine | date:'MM/dd/yyyy'}}</td>
         <td><select  ng-model="obj.rating"
                 name="rating" class="form-control selectpicker"
                 ng-options="r as r.code for r in ratings track by r.idRating"  required>
         </select>
         </td>
         <td>
-            <textarea class="form-control rounded-0" rows="3" cols="10" ng-model="obj.comment" name="comment"></textarea>
+            <textarea class="form-control rounded-0" rows="3" ng-model="obj.comment" name="comment"></textarea>
             <!--<input type="textarea" ng-model="comment" name="comment"
                    ng-keyup="keyUp($event)" placeholder="comment" ng-blur="commentChanged(obj, comment)">-->
         </td>

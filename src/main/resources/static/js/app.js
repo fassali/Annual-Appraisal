@@ -1,4 +1,4 @@
-var app = angular.module("myApp",['ui.router','ngMaterial',,"chart.js" ]);
+var app = angular.module("myApp",['ui.router','ngMaterial']);
 
 
 
@@ -7,20 +7,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	 // chemin par defaut pour vue accueil
 	 $urlRouterProvider.otherwise('/');
 	 
-		$stateProvider.state('main', {
-			
-			url : '',
-			views : {
-				'main' : {
-					templateUrl : 'views/content.html',
-				},
-				'nav@main' : {
-					templateUrl : 'views/nav.html',
-					controller: 'NavController'
-					
-				}
-			}
-		
+		$stateProvider.state('lastObj',
+			{
+			url : '/obj',
+            templateUrl : 'views/objectives/lastObjectives.html',
+            controller: 'objController'
 		})
+            .state('session',
+                {
+                    url : '/session',
+                    templateUrl : 'views/startSession.html',
+                    controller: 'annualSessController.js'
+                })
 
 });
