@@ -47,18 +47,19 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 	}
 	$scope.ajouterLevel = function() {
 		
-		$scope.skils.levels = [];
-//		var idx = false;
-//		
-//		$scope.skils.levels.forEach(function(element,index ) {
-//			 if($scope.meaning.idLevel == element.idLevel)
-//			 {	 $scope.skils.levels[index]= $scope.meaning;
-//				console.log($scope.skils.levels[index])
-//				idx = true;
-//			 }
-//			
-//			});
-//		if(!idx)
+		console.log($scope.skils)
+		//$scope.skils.levels = [];
+		var idx = false;
+		
+		$scope.skils.levels.forEach(function(element,index ) {
+			 if($scope.meaning.idLevel == element.idLevel)
+			 {	 $scope.skils.levels[index]= $scope.meaning;
+				console.log($scope.skils.levels[index])
+				idx = true;
+			 }
+			
+			});
+		if(!idx)
 		$scope.skils.levels.push($scope.meaning);
 		
 		skilsDataService.newLevel($scope.skils).then(function(data) {
