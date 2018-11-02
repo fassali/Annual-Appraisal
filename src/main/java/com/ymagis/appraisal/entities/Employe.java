@@ -25,9 +25,7 @@ public class Employe implements Serializable {
 
     private Date dateEntry;
 
-    private String mFirstName;
-
-    private String mLastName;
+    private Integer idManager;
 
     @JsonIgnore
     @OneToMany(mappedBy = "employe", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
@@ -36,14 +34,13 @@ public class Employe implements Serializable {
     public Employe() {
     }
 
-    public Employe(String firstName, String lastName, String position, String team, Date dateEntry, String mFistName, String mLastName, Set<ApEmploye> apEmployes) {
+    public Employe(String firstName, String lastName, String position, String team, Date dateEntry, Integer idManager, Set<ApEmploye> apEmployes) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
         this.team = team;
         this.dateEntry = dateEntry;
-        this.mFirstName = mFistName;
-        this.mLastName = mLastName;
+        this.idManager = idManager;
         this.apEmployes = apEmployes;
     }
 
@@ -95,27 +92,19 @@ public class Employe implements Serializable {
         this.dateEntry = dateEntry;
     }
 
-    public String getmFirstName() {
-        return mFirstName;
-    }
-
-    public void setmFirstName(String mFirstName) {
-        this.mFirstName = mFirstName;
-    }
-
-    public String getmLastName() {
-        return mLastName;
-    }
-
-    public void setmLastName(String mLastName) {
-        this.mLastName = mLastName;
-    }
-
     public Set<ApEmploye> getApEmployes() {
         return apEmployes;
     }
 
     public void setApEmployes(Set<ApEmploye> apEmployes) {
         this.apEmployes = apEmployes;
+    }
+
+    public Integer getIdManager() {
+        return idManager;
+    }
+
+    public void setIdManager(Integer idManager) {
+        this.idManager = idManager;
     }
 }

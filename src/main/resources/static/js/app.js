@@ -8,6 +8,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	 // chemin par defaut pour vue accueil
 	 $urlRouterProvider.otherwise('/');
 	 
+
+		$stateProvider.state('lastObj',
+			{
+			url : '/obj',
+            templateUrl : 'views/objectives/lastObjectives.html',
+            controller: 'objController'
+		})
+            .state('session',
+                {
+                    url : '/session',
+                    templateUrl : 'views/startSession.html',
+                    controller: 'annualSessController.js'
+                })
+
 	 $stateProvider.state('skils', {
            url: '/skils',
            templateUrl: 'views/softskil/skils.html',
