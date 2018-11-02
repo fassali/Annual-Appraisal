@@ -15,12 +15,14 @@ public class SoftSkill implements Serializable {
     private Long idSoftSkill;
 
     private String code;
-
+    private boolean isRemoved;
     private String label;
+
 
     //@JsonIgnore
     @OneToMany(mappedBy = "softSkill", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<Level> levels;
+
 
     public SoftSkill() {
     }
@@ -62,4 +64,15 @@ public class SoftSkill implements Serializable {
     public void setLevels(Set<Level> levels) {
         this.levels = levels;
     }
+
+	public boolean isRemoved() {
+		return isRemoved;
+	}
+
+	public void setRemoved(boolean isRemoved) {
+		this.isRemoved = isRemoved;
+	}
+
+
+    
 }

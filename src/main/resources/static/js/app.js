@@ -1,4 +1,5 @@
-var app = angular.module("myApp",['ui.router','ngMaterial',,"chart.js" ]);
+
+var app = angular.module("myApp",['ui.router','ngMaterial']);
 
 
 
@@ -7,20 +8,27 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	 // chemin par defaut pour vue accueil
 	 $urlRouterProvider.otherwise('/');
 	 
-		$stateProvider.state('main', {
-			
-			url : '',
-			views : {
-				'main' : {
-					templateUrl : 'views/content.html',
-				},
-				'nav@main' : {
-					templateUrl : 'views/nav.html',
-					controller: 'NavController'
-					
-				}
-			}
-		
-		})
+	 $stateProvider.state('skils', {
+           url: '/skils',
+           templateUrl: 'views/softskil/skils.html',
+           controller  :   "skilsCtrl"
+       })
+       .state('newskils', {
+           url: '/skils/save',
+           templateUrl: 'views/softskil/newskils.html',
+           controller  :   "newSkilsCtrl"
+       })
+          .state('updateskils', {
+           url: '/skils/:id',
+           templateUrl: 'views/softskil/updateskils.html',
+           controller  :   "newSkilsCtrl"
+       })      
+       .state('newApskils', {
+           url: '/apskil/save',
+           templateUrl: 'views/softskil/newAppSoftSkil.html',
+           controller  :   "newApSoftSkilsCtrl"
+       })
+;
 
 });
+
