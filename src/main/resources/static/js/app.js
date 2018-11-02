@@ -1,3 +1,4 @@
+
 var app = angular.module("myApp",['ui.router','ngMaterial']);
 
 
@@ -7,6 +8,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	 // chemin par defaut pour vue accueil
 	 $urlRouterProvider.otherwise('/');
 	 
+
 		$stateProvider.state('lastObj',
 			{
 			url : '/obj',
@@ -20,4 +22,27 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     controller: 'annualSessController.js'
                 })
 
+	 $stateProvider.state('skils', {
+           url: '/skils',
+           templateUrl: 'views/softskil/skils.html',
+           controller  :   "skilsCtrl"
+       })
+       .state('newskils', {
+           url: '/skils/save',
+           templateUrl: 'views/softskil/newskils.html',
+           controller  :   "newSkilsCtrl"
+       })
+          .state('updateskils', {
+           url: '/skils/:id',
+           templateUrl: 'views/softskil/updateskils.html',
+           controller  :   "newSkilsCtrl"
+       })      
+       .state('newApskils', {
+           url: '/apskil/save',
+           templateUrl: 'views/softskil/newAppSoftSkil.html',
+           controller  :   "newApSoftSkilsCtrl"
+       })
+;
+
 });
+

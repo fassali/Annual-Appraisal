@@ -10,9 +10,11 @@ public class ApSoftSkill implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idApStSkill;
 
+
     @ManyToOne(cascade = CascadeType.ALL)
     //@JsonIgnore
     @JoinColumn(name = "id_level")
+
     private Level level;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -30,6 +32,7 @@ public class ApSoftSkill implements Serializable {
     public void setIdApStSkill(Long idApStSkill) {
         this.idApStSkill = idApStSkill;
     }
+
 
     public Level getLevel() {
         return level;
