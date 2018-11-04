@@ -7,8 +7,6 @@ var app = angular.module("myApp",['ui.router','ngMaterial']);
 app.config(function ($stateProvider, $urlRouterProvider) {
 	 // chemin par defaut pour vue accueil
 	 $urlRouterProvider.otherwise('/login');
-	 
-
 		$stateProvider.state('lastObj',
 			{
 			url : '/obj',
@@ -54,7 +52,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	        controller:'EmployersListController'
 	        
 	    });
+	    $stateProvider.state('newEmployer',{
+	        url:'/newEmployer',
+	        templateUrl:'views/employer/NewEmployer.html',
+	        controller:'EmployerController'
+	    });
 	 
+	    $stateProvider.state('profile',{
+	        url:'/myProfil',
+	        templateUrl:'views/employer/profilEmployer.html',
+	        controller:'ProfilController'
+	    });
 
 
 });
