@@ -16,7 +16,7 @@ public class HardSkillController {
 	@Autowired
 	private ApHardSkillRepository apHardSkillRepository;
 
-	@GetMapping(value = "/hard_skills")
+	@GetMapping(value = "/competencies")
 	public List<ApHardSkill> getHardSkills(@RequestParam("idApEmp") Long idApEmp) {
 		return apHardSkillRepository.namedFindAllApHardSkillsByApEmploye(idApEmp);
 	}
