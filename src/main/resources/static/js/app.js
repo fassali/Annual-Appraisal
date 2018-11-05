@@ -21,6 +21,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     templateUrl : 'views/startSession.html',
                     controller: 'annualSessController.js'
                 })
+                
+     $stateProvider.state('competencies',
+			{
+			url : '/competencies',
+            templateUrl : 'views/hardSkills.html',
+            controller: 'hardSkillController'
+		})
+            .state('newCompetency',
+                {
+                    url : '/competencies/save',
+                    templateUrl : 'views/hardSkills.html',
+                    controller: 'hardSkillController.js'
+                })
 
 	 $stateProvider.state('skils', {
            url: '/skils',

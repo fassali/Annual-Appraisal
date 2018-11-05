@@ -3,6 +3,7 @@ package com.ymagis.appraisal.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
+@NamedQuery(name = "ApHardSkill.namedFindAllApHardSkillsByApEmploye", query = "select a from ApHardSkill a where a.apEmploye.idApEmp = :idApEmp")
 public class ApHardSkill implements Serializable {
 
     @Id
