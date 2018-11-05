@@ -28,6 +28,14 @@ function skilsCtrl($scope,skilsDataService,$http,$location,$window) {
 
 		});
 	}
+	//
+	$scope.suppSkil = function(item) {
+		item.removed = true;		
+		console.log(item)
+		skilsDataService.updSkils(item).then(function(data) {
+			alert("done")
+				});
+	}
 	
 	//fonction permet d'incrementer les numero de la page
 	$scope.gotonext = function() {
