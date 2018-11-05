@@ -6,9 +6,7 @@ var app = angular.module("myApp",['ui.router','ngMaterial']);
 // la configuration des des route (les chemin des vues)
 app.config(function ($stateProvider, $urlRouterProvider) {
 	 // chemin par defaut pour vue accueil
-	 $urlRouterProvider.otherwise('/');
-	 
-
+	 $urlRouterProvider.otherwise('/login');
 		$stateProvider.state('lastObj',
 			{
 			url : '/obj',
@@ -54,8 +52,31 @@ app.config(function ($stateProvider, $urlRouterProvider) {
            url: '/apskil/save',
            templateUrl: 'views/softskil/newAppSoftSkil.html',
            controller  :   "newApSoftSkilsCtrl"
-       })
-;
+       });
+		
+	    $stateProvider.state('login',{
+	        url:'/login',
+	        templateUrl:'views/employer/login.html',
+	        controller:'LoginController'
+	    });
+	    $stateProvider.state('employersList',{
+	        url:'/employers',
+	        templateUrl:'views/employer/employersList.html',
+	        controller:'EmployersListController'
+	        
+	    });
+	    $stateProvider.state('newEmployer',{
+	        url:'/newEmployer',
+	        templateUrl:'views/employer/NewEmployer.html',
+	        controller:'EmployerController'
+	    });
+	 
+	    $stateProvider.state('profile',{
+	        url:'/myProfil',
+	        templateUrl:'views/employer/profilEmployer.html',
+	        controller:'ProfilController'
+	    });
+
 
 });
 
