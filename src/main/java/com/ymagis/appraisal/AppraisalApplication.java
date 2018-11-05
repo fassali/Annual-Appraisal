@@ -36,13 +36,5 @@ public class AppraisalApplication implements CommandLineRunner{
         System.out.println(apObjEmps.size());*/
     }
 
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-//		Skils skils = new Skils("tesst");
-//		MeaningSkils meaningSkils = new MeaningSkils(1, "desciption test");
-//		meaningSkils.setSkil(skils);
-//		skilsRepository.save(skils);
-//		skilsRepository.save(new Skils("Team Spirit"));
-	}
+
 }
