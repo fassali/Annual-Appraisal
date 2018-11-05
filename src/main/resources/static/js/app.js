@@ -76,6 +76,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	        templateUrl:'views/employer/profilEmployer.html',
 	        controller:'ProfilController'
 	    });
+	    
+	    $stateProvider.state('apObjEmp',{
+	        url:'/apObjEmp',
+	        templateUrl:'views/ApObjEmp/ApObjEmp.html',
+	        controller:'ApObjController'
+	    });
 
 
 });
