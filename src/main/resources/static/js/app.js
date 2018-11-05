@@ -17,7 +17,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 {
                     url : '/session',
                     templateUrl : 'views/startSession.html',
-                    controller: 'annualSessController.js'
+                    controller: 'annualSessController'
                 })
                 
      $stateProvider.state('competencies',
@@ -33,7 +33,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     controller: 'hardSkillController.js'
                 })
 
-	 $stateProvider.state('skils', {
+            .state('skils', {
            url: '/skils',
            templateUrl: 'views/softskil/skils.html',
            controller  :   "skilsCtrl"

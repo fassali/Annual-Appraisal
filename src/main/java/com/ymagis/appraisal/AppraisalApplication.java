@@ -36,5 +36,4 @@ public class AppraisalApplication implements CommandLineRunner{
         System.out.println(apObjEmps.size());*/
     }
 
-
 }

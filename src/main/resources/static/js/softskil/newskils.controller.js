@@ -21,7 +21,27 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 			});
 				});
 	}
-
+//
+	$scope.suppSkil = function(item) {		
+		console.log(item)
+		
+		$scope.skils.levels.forEach(function(element,index ) {
+			 if(element.idLevel == item.idLevel)
+				 
+			 {	 
+				 item.removed = true;
+				 $scope.skils.levels[index]= item;
+				console.log($scope.skils.levels[index])
+			 }
+		})
+		skilsDataService.removeLevel($scope.skils).then(function(data) {
+			skilsDataService.getSkils($scope.skils.idSoftSkill).then(function(data){
+				$scope.skils.levels = [];
+				$scope.skils.levels = data.levels;
+			});
+				});
+	}
+	//
 	$scope.ajouter = function() {
 		//$scope.skils.levels = [];
 		$scope.skils.levels.push($scope.meaning)
@@ -47,28 +67,42 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 	}
 	$scope.ajouterLevel = function() {
 		
-		console.log($scope.skils)
+	//	console.log($scope.skils)
 		//$scope.skils.levels = [];
 		var idx = false;
-		
 		$scope.skils.levels.forEach(function(element,index ) {
 			 if($scope.meaning.idLevel == element.idLevel)
 			 {	 $scope.skils.levels[index]= $scope.meaning;
-				console.log($scope.skils.levels[index])
+//				console.log($scope.skils.levels[index])
 				idx = true;
 			 }
-			
-			});
-		if(!idx)
-		$scope.skils.levels.push($scope.meaning);
+			 
 		
-		skilsDataService.newLevel($scope.skils).then(function(data) {
+		if($scope.meaning.idLevel != null){
+			console.log("here")
+			skilsDataService.updLevel($scope.skils,$scope.meaning.idLevel).then(function(data) {
+				$scope.skils = data;
+					});
+		}
+		else{
+			if(!idx)
+				$scope.skils.levels.push($scope.meaning);
+			
+					skilsDataService.newLevel($scope.skils).then(function(data) {
 			skilsDataService.getSkils($scope.skils.idSoftSkill).then(function(data){
 				$scope.skils.levels = [];
 				$scope.skils.levels = data.levels;
 				$scope.meaning ={};
 			});
 				});
+			
+		}
+		
+			
+			});
+		
+		
+
 		//
 	}
 		
