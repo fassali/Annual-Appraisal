@@ -88,6 +88,19 @@ app.service("skilsDataService",function ($http,$location) {
             });
         };
         //
+        // update level
+        this.updLevel = function(skils,idLevel){
+
+
+        	return  $http.put("http://localhost:8080/skils/level/"+idLevel,skils)
+            .then(function mySuccess(response) {
+            	
+            	return response.data;
+            }, function myError(response) {
+               
+
+            });
+        };
         // ajouter un level
         this.newLevel = function(skils){
 
@@ -130,23 +143,18 @@ app.service("skilsDataService",function ($http,$location) {
           
             return promise2;
         };
-        // recuperer un level
-        this.getLevel = function (id) {
-            var promise1    =   $http({
-                method : "GET",
-                url: "http://localhost:8080/meaning/"+id
-            });
+        // remove level
+        this.removeLevel = function(skils){
 
-            
-            var promise2 = promise1.then(function mySuccess(response) {
 
-                return response.data;
-
+        	return  $http.put("http://localhost:8080/skils/"+skils.idSoftSkill+"/remove",skils)
+            .then(function mySuccess(response) {
+            	
+            	return response.data;
             }, function myError(response) {
-                  
+               
+
             });
-          
-            return promise2;
         };
         // ajouter ap soft skils
         this.newApSoftSkill = function(apskil){
