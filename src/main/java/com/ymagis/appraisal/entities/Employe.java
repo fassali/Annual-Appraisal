@@ -14,20 +14,61 @@ public class Employe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEmp;
-
     private String firstName;
-
     private String lastName;
-
     private String position;
-
     private String team;
-
     private Date dateEntry;
+    private String username;
+    private String email;
+    private String  manager;
+    private String admin;
+    private Integer remove;
+    private Integer idManager;
+    
+    
+    
+    public String getUsername() {
+		return username;
+	}
 
-    private String mFirstName;
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    private String mLastName;
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+
+	public Integer getRemove() {
+		return remove;
+	}
+
+	public void setRemove(Integer remove) {
+		this.remove = remove;
+	}
+
+	
 
     @JsonIgnore
     @OneToMany(mappedBy = "employe", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
@@ -36,18 +77,26 @@ public class Employe implements Serializable {
     public Employe() {
     }
 
-    public Employe(String firstName, String lastName, String position, String team, Date dateEntry, String mFistName, String mLastName, Set<ApEmploye> apEmployes) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.position = position;
-        this.team = team;
-        this.dateEntry = dateEntry;
-        this.mFirstName = mFistName;
-        this.mLastName = mLastName;
-        this.apEmployes = apEmployes;
-    }
 
-    public Long getIdEmp() {
+
+    public Employe(String firstName, String lastName, String position, String team, Date dateEntry, String username,
+			String email, String manager, String admin, Integer remove, Integer idManager, Set<ApEmploye> apEmployes) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.position = position;
+		this.team = team;
+		this.dateEntry = dateEntry;
+		this.username = username;
+		this.email = email;
+		this.manager = manager;
+		this.admin = admin;
+		this.remove = remove;
+		this.idManager = idManager;
+		this.apEmployes = apEmployes;
+	}
+
+	public Long getIdEmp() {
         return idEmp;
     }
 
@@ -95,27 +144,19 @@ public class Employe implements Serializable {
         this.dateEntry = dateEntry;
     }
 
-    public String getmFirstName() {
-        return mFirstName;
-    }
-
-    public void setmFirstName(String mFirstName) {
-        this.mFirstName = mFirstName;
-    }
-
-    public String getmLastName() {
-        return mLastName;
-    }
-
-    public void setmLastName(String mLastName) {
-        this.mLastName = mLastName;
-    }
-
     public Set<ApEmploye> getApEmployes() {
         return apEmployes;
     }
 
     public void setApEmployes(Set<ApEmploye> apEmployes) {
         this.apEmployes = apEmployes;
+    }
+
+    public Integer getIdManager() {
+        return idManager;
+    }
+
+    public void setIdManager(Integer idManager) {
+        this.idManager = idManager;
     }
 }
