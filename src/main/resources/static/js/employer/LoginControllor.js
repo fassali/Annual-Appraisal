@@ -14,7 +14,9 @@
 					$rootScope.user=data;
 					 if($rootScope.user.manager=="Yes"){
 						document.location.href="http://localhost:8080/#!/employers";
-					}else if($rootScope.user.manager=="No"){
+					}else if($rootScope.user.admin=="Yes"){
+						document.location.href="http://localhost:8080/#!/allEmployers";
+					}else{
 						document.location.href="http://localhost:8080/#!/myProfil";
 					}
 				}

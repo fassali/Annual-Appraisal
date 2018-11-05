@@ -71,7 +71,13 @@ public class EmployeController {
 		return employeur;
 	}
 	
-	
+	// get all employers List
+	@RequestMapping(value = "/findAllEmployers", method = RequestMethod.GET)
+	public Page<Employe> findAllEmployers(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "6") int size) {
+		return employeRepository.getAllEmployer(new PageRequest(page, size));
+	}
 	
 	
 	

@@ -14,6 +14,7 @@
 <div class="alert alert-success margin-top-5" ng-show="ajoutMessage">{{ajoutMessage}}</div>
 <br>
 </div>
+
 	<div class="container-contact100">
 		<div class="wrap-contact100">
 			<div class="contact100-form-title" style="background-image: url(img/bg-01.jpg);">
@@ -23,12 +24,15 @@
 			</div>
 
 			<form class="contact100-form" name="employerForm" novalidate>
-         <br> 
-				<div class="wrap-input100 validate-input" ng-class="{ 'has-error' : employerForm.firstName.$invalid && !employerForm.quantite.$pristine }">
+            <br> 
+            	
+				<div class="wrap-input100 validate-input">
 					<span class="label-input100">First Name:</span>
 					<input class="input100" type="text" name="firstName" placeholder="Enter first name" ng-model="firstName" required>
 					<span class="focus-input100"></span>
-				</div>
+					</div>
+			
+				
 				<div class="wrap-input100 validate-input" data-validate = "Last Name is required">
 					<span class="label-input100">Last Name:</span>
 					<input class="input100" type="text" name="lastName" placeholder="Enter last name" ng-model="lastName" required>

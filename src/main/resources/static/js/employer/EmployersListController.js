@@ -114,7 +114,6 @@
 		 				 			})
 		 				 				
 		 			    }
-		 			     
 		 			    $scope.stopmsg = function() {
 		 					if (angular.isDefined(stop)) {
 		 						$interval.cancel(stop);

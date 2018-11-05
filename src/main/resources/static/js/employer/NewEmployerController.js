@@ -7,21 +7,28 @@
            $scope.employers=[];
            $scope.count=0;
            $scope.manager=null;
+           $scope.show=0;
 		
 		
 		  //methode pour ajouter un nv employeur
 		$scope.addEmployer = function() {
+			if($scope.firstName==null){
+				$scope.show=1;
+			}
+			
+			
+			
+			
+			
 			//employer name
 			var f=$scope.firstName.substr(0,1).toUpperCase()+$scope.firstName.substr(1,$scope.firstName.length).toLowerCase()
 			var s=$scope.lastName.substr(0,1).toUpperCase()+$scope.lastName.substr(1,$scope.lastName.length).toLowerCase()
             $scope.employer.firstName=f;
 			$scope.employer.lastName=s;
-			
-			
 			//construire le nom d'utilisateur
-			var firstChars = $scope.employer.firstName.split('');
-			var fisrtChar=firstChars[0];
-			var second=$scope.employer.lastName;
+			var first=$scope.employer.firstName;
+			var firstChars = first.split('');
+			var fisrtChar=firstChars[0].toLowerCase();
 			var minLastName=$scope.employer.lastName.toLowerCase();
 			$scope.username=fisrtChar+minLastName;
 			//ajouter username a l'employeur
@@ -42,7 +49,6 @@
 			$scope.employer.idManager=$rootScope.user.idEmp;
 			//ajouter "remove" variable : 1 par defaut;
 			$scope.employer.remove=1;
-			console.log($scope.employer);
 			//enregister le nv employeur 
 			EmployersDatasrv.addEmployer($scope.employer).then(function(data) {
 				$scope.ajoutMessage = "The new employer is added successfully!";

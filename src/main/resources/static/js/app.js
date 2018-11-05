@@ -76,6 +76,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	        templateUrl:'views/employer/profilEmployer.html',
 	        controller:'ProfilController'
 	    });
+	    $stateProvider.state('admin',{
+	        url:'/allEmployers',
+	        templateUrl:'views/employer/admin.html',
+	        controller:'AdminController'
+	    });
 
 
 });

@@ -48,7 +48,20 @@
 	        });
 	     return promise2;
 	    }
-		
+		//chercher la liste de tt les employeurs
+		this.findAllEmployers=function(pageCourante,size){
+	        var promise1=$http({
+	            method: 'GET',
+	            url: "http://localhost:8080/findAllEmployers?page="+pageCourante+"&size="+size
+	            });
+	        var promise2=promise1.then(function(response){
+	        	return response.data;
+	        },function(err){
+	            console.log(err);
+
+	        });
+	     return promise2;
+	    }
 		 //update un employeur
         this.saveEmployer=function(employer,idEmp){
        	 console.log(employer);
