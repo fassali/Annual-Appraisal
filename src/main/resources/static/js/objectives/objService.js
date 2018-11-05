@@ -47,14 +47,14 @@ app.service("objService",function ($http,$location) {
             });
     };
 
-    this.startNewSess = function(){
+    /*this.startNewSess = function(){
         return $http.put("http://localhost:8080/StartNewSess")
             .then(function mySuccess(response) {
                 return response.data;
             }, function myError(error) {
                 console.log(error.data);
             });
-    };
+    };*/
 
     this.startNewSess = function(){
         var promise1    =   $http({
@@ -62,7 +62,7 @@ app.service("objService",function ($http,$location) {
             url : "http://localhost:8080/StartNewSess"
         });
 
-        var startNewSess = promise1.then(function mySuccess(response) {
+        var promise2 = promise1.then(function mySuccess(response) {
             return response.data;
             console.log(response.data);
 

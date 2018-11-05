@@ -87,7 +87,7 @@ public class ObjectifController {
         }
     }
 
-    @RequestMapping(value = "/StartNewSess", method = RequestMethod.PUT)
+    @PostMapping(value = "/StartNewSess")
     public AnnualSession StartNewSess() {
         Year currentYear = Year.now();
         AnnualSession annualSession = new AnnualSession();

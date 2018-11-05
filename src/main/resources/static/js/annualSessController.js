@@ -1,21 +1,17 @@
 (function() {
 
     var app = angular.module("myApp");
-    app.controller("objController", objController);
+    app.controller("annualSessController", annualSessController);
 
     //controller pour client
-    function objController($scope, $window, objService, $state, $rootScope, $interval) {
+    function annualSessController($scope, $window, objService, $state, $rootScope, $interval) {
 
-        $scope.pageLastObj = {};
         $scope.count=0;
-
-
 
         //faire appel au service objectif pour recuperer les objectifs
 
         objService.startNewSess().then(function(data) {
-            $rootScope.msgSession = "the " + data.label
-                + " session is started"
+            $rootScope.msgSession = "the " + data.label + " session is started"
             stop = $interval(function() {
                 $scope.count = $scope.count + 1;
                 if ($scope.count == 5)

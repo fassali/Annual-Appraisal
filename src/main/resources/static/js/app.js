@@ -19,10 +19,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 {
                     url : '/session',
                     templateUrl : 'views/startSession.html',
-                    controller: 'annualSessController.js'
+                    controller: 'annualSessController'
                 })
 
-	 $stateProvider.state('skils', {
+            .state('skils', {
            url: '/skils',
            templateUrl: 'views/softskil/skils.html',
            controller  :   "skilsCtrl"

@@ -8,13 +8,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "annual_session")
+@Table(name = "annual_session", uniqueConstraints={@UniqueConstraint(columnNames = "label")})
 public class AnnualSession implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAnn;
 
+    //@UniqueConstraint(columnNames={"label"})
     private String label;
 
     private String status;
