@@ -48,11 +48,17 @@ public class ApEmploye implements Serializable {
     private Set<ApHardSkill> apHardSkills = new HashSet<>(0);
 
     //@JsonIgnore
-    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    //@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     /*@JoinTable(name = "apEmploye_apObjEmp", joinColumns = @JoinColumn(name = "id_Ap_Emp", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_ap_obj_emp", referencedColumnName = "id"))*/
-    @JoinTable(name = "ap_employe_ap_objEmp", joinColumns = @JoinColumn(name = "id_ap_amp"), inverseJoinColumns = @JoinColumn(name = "id_ap_obj_emp"))
+    //@JoinTable(name = "ap_employe_ap_objEmp", joinColumns = @JoinColumn(name = "id_ap_amp"), inverseJoinColumns = @JoinColumn(name = "id_ap_obj_emp"))
+    //private Set<ApObjEmp> apObjEmps;
+
+
+   // @JsonIgnore
+    @OneToMany(mappedBy = "apEmploye", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private Set<ApObjEmp> apObjEmps;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "apEmploye", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
