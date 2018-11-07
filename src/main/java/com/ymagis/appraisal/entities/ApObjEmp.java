@@ -14,10 +14,10 @@ public class ApObjEmp implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idApObjEmp;
 
-    /*@ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "id_ap_emp")
-    private ApEmploye apEmploye;*/
+    private ApEmploye apEmploye;
 
     private String indicator;
 
@@ -34,25 +34,24 @@ public class ApObjEmp implements Serializable {
     @JoinColumn(name = "id_rating")
     private Rating rating;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @ManyToMany(mappedBy = "apObjEmps")
-    private Set<ApEmploye> apEmployes;
+    private Set<ApEmploye> apEmployes;*/
 
     public ApObjEmp() {
     }
 
     public ApObjEmp(Long idApObjEmp, String indicator,
                     String labelObj, String mean, Date deadLine, String comment, Rating rating,
-                    Set<ApEmploye> apEmployes) {
+                    ApEmploye apEmploye) {
         this.idApObjEmp = idApObjEmp;
-        //this.apEmploye = apEmploye;
+        this.apEmploye = apEmploye;
         this.indicator = indicator;
         this.labelObj = labelObj;
         this.mean = mean;
         this.deadLine = deadLine;
         this.comment = comment;
         this.rating = rating;
-        this.apEmployes = apEmployes;
     }
 
     public Long getIdApObjEmp() {
@@ -111,11 +110,11 @@ public class ApObjEmp implements Serializable {
         this.rating = rating;
     }
 
-    public Set<ApEmploye> getApEmployes() {
-        return apEmployes;
+    public ApEmploye getApEmploye() {
+        return apEmploye;
     }
 
-    public void setApEmployes(Set<ApEmploye> apEmployes) {
-        this.apEmployes = apEmployes;
+    public void setApEmploye(ApEmploye apEmploye) {
+        this.apEmploye = apEmploye;
     }
 }
