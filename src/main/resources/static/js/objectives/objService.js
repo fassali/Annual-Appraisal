@@ -2,7 +2,9 @@
 var app = angular.module("myApp");
 
 app.service("objService",function ($http,$location) {
-
+     var that=this;
+    that.msgErr = "";
+    that.msgSuccess = "";
 // recuperer la liste des objectifs de l'année dernièr
     this.getLastObjs = function(yr, idEmp, currentPage, size){
        //alert("year: " + yr + " idEmp: " + idEmp + " page: " + currentPage + " size: " + size);
@@ -63,11 +65,14 @@ app.service("objService",function ($http,$location) {
         });
 
         var promise2 = promise1.then(function mySuccess(response) {
-            return response.data;
             console.log(response.data);
+            var year = response.data.label;
+            that.msgSuccess  = "The session " + year + " is well started";
+            return response.data;
 
-        }, function myError(error) {
-            console.log(error)
+        }, function (error) {
+            that.msgErr  = error.data.message;
+            console.log(error.data.message)
         });
         return promise2;
     };
