@@ -3,6 +3,7 @@ package com.ymagis.appraisal.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
+@NamedQuery(name = "ApFeedBack.namedFindAllApFeedBacksByApEmploye", query = "select a from ApFeedBack a where a.apEmploye.idApEmp = :idApEmp")
 public class ApFeedBack implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
