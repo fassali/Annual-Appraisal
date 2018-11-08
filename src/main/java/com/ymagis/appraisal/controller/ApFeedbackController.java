@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ymagis.appraisal.entities.ApFeedBack;
-import com.ymagis.appraisal.entities.FeedBack;
 import com.ymagis.appraisal.repository.ApFeedbackRepository;
-import com.ymagis.appraisal.repository.FeedbackRepository;
 
 @RestController
 @CrossOrigin
