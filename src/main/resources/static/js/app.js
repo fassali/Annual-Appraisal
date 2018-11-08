@@ -82,6 +82,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	        templateUrl:'views/ApObjEmp/ApObjEmp.html',
 	        controller:'ApObjController'
 	    });
+	    
+	    $stateProvider.state('fannualAppraisal',{
+	        url:'/annualAppraisal',
+	        templateUrl:'views/employer/firstPage.html',
+	        controller:'FirstPageController'
+	    });
 
 
 });
