@@ -90,11 +90,16 @@ public class ObjectifController {
     @PostMapping(value = "/StartNewSess")
     public AnnualSession StartNewSess() {
         Year currentYear = Year.now();
-        AnnualSession annualSession = new AnnualSession();
-        annualSession.setLabel(currentYear.toString());
-        annualSession.setStatus(Constantes.CURRENT_YEAR);
-        annualSessionRepository.save(annualSession);
-        return annualSession;
+        AnnualSession annualSessionExist = annualSessionRepository.findAnnualSessionByLabel(currentYear.toString());
+        if(null != annualSessionExist){
+            throw new RuntimeException("the new session has already started");
+        }else{
+            AnnualSession annualSession = new AnnualSession();
+            annualSession.setLabel(currentYear.toString());
+            annualSession.setStatus(Constantes.CURRENT_YEAR);
+            annualSessionRepository.save(annualSession);
+            return annualSession;
+        }
     }
 
 
