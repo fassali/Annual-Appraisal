@@ -53,6 +53,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 				$scope.suppLevel = null;
 				$scope.msgSucces = $scope.skils.label+" Suprimmer avec success ";
 				stop = autoClose();
+				$scope.levels.sort(function (a, b) {
+					  return b.degree - a.degree;
+					});
 			});
 				}, function myError(response) {
 	            });
@@ -69,6 +72,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 				$scope.meaning ={};
 				$scope.msgSucces = $scope.skils.label+" ajouter  avec success ";
 				stop = autoClose();
+				$scope.levels.sort(function (a, b) {
+					  return b.degree - a.degree;
+					});
 			});
 				}, function myError(response) {
 					skilsDataService.getSkils($scope.skils.idSoftSkill).then(function(data){
@@ -78,6 +84,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 						$scope.msgError = response.data.message;
 						$scope.meaning ={};
 						stop = autoClose();
+						$scope.levels.sort(function (a, b) {
+							  return b.degree - a.degree;
+							});
 					});
 	            }
 		);
@@ -92,6 +101,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 				$scope.meaning ={};
 				$scope.msgSucces = $scope.skils.label+" modifier avec success ";
 				stop = autoClose();
+				$scope.levels.sort(function (a, b) {
+					  return b.degree - a.degree;
+					});
 			});
 				}, function myError(response) {
 					skilsDataService.getSkils($scope.skils.idSoftSkill).then(function(data){
@@ -101,6 +113,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 						$scope.msgError = response.data.message;
 						$scope.meaning ={};
 						stop = autoClose();
+						$scope.levels.sort(function (a, b) {
+							  return b.degree - a.degree;
+							});
 					});
 	            });
 	}
@@ -129,6 +144,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 						$scope.msgSucces = "Level est modifier avec success ";
 						$scope.meaning ={};
 						stop = autoClose();
+						$scope.levels.sort(function (a, b) {
+							  return b.degree - a.degree;
+							});
 					});
 					}, function myError(response) {
 						skilsDataService.getSkils($scope.skils.idSoftSkill).then(function(data){
@@ -138,6 +156,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 							$scope.msgError = response.data.message;
 							$scope.meaning ={};
 							stop = autoClose();
+							$scope.levels.sort(function (a, b) {
+								  return b.degree - a.degree;
+								});
 						});
 		            });
 	}
@@ -156,6 +177,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 				$scope.msgSucces = "Level est ajouter avec success ";
 				stop = autoClose();
 				$scope.meaning ={};
+				$scope.levels.sort(function (a, b) {
+					  return b.degree - a.degree;
+					});
 			});
 				}, function(response) {
 					skilsDataService.getSkils($scope.skils.idSoftSkill).then(function(data){
@@ -165,6 +189,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 						$scope.msgError = response.data.message;
 						$scope.meaning ={};
 						stop = autoClose();
+						$scope.levels.sort(function (a, b) {
+							  return b.degree - a.degree;
+							});
 					});
 
 	            });
@@ -195,6 +222,9 @@ function newSkilsCtrl($scope,skilsDataService,$http,$location,$window,$statePara
 				function mySuccess(data) {
 					$scope.skils = data;
 					$scope.levels = $scope.skils.levels;
+					$scope.levels.sort(function (a, b) {
+						  return b.degree - a.degree;
+						});
 				})
 }
 

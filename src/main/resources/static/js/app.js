@@ -57,6 +57,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
            url: '/sysnthesis',
            templateUrl: 'views/Syntesis/syntesis.html',
            controller  :  "syntesisCtrl"
+       })
+       .state('potentialEvolution', {
+           url: '/potentialEvolution',
+           templateUrl: 'views/Syntesis/potentialEvolution.html',
+           controller  :  "syntesisCtrl"
        });
 		
 	    $stateProvider.state('login',{
