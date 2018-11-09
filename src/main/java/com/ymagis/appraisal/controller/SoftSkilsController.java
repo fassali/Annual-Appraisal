@@ -52,23 +52,20 @@ public class SoftSkilsController {
 		}
 	}
 
+	// ajouter skil et level
 	@RequestMapping(method = RequestMethod.POST, value = "/skilsLevel/save")
 	public SoftSkill saveSkilslevel(@RequestBody SoftSkill skils) {
 		Optional<SoftSkill> skill = skilsRepository.findById(skils.getIdSoftSkill());
-		for (Level level : skils.getLevels())
-			if (((level.getIdLevel() == null)) && (skils.getLevels().size() != 0)) {
-				for (Level level2 : skils.getLevels())
-					if ((level.getDegree() == level2.getDegree())  && (level2.getIdLevel() != null))
-						throw new RuntimeException("level  " + level.getDegree() + " existe deja "+level2.isRemoved());
+		for (Level nvlevel : skils.getLevels())
+			if (skill.get().getLevels().size() != 0) {
+				for (Level level : skill.get().getLevels())
+					if ((nvlevel.getDegree() == level.getDegree()) && (!level.isRemoved())
+							&& (level.getIdLevel() != null))
+						throw new RuntimeException("level  " + nvlevel.getDegree() + " existe deja ");
 					else
-						level.setSoftSkill(skils);
-			} else {
-				for (Level levl : skill.get().getLevels())
-					if ((level.getDegree() == levl.getDegree()) &&(level.getIdLevel() != levl.getIdLevel()))
-						throw new RuntimeException("level  " + level.getDegree() + " existe deja");
-					else
-						level.setSoftSkill(skils);
-			}
+						nvlevel.setSoftSkill(skils);
+			} else
+				nvlevel.setSoftSkill(skils);
 
 		skilsRepository.save(skils);
 
@@ -81,7 +78,7 @@ public class SoftSkilsController {
 		Optional<SoftSkill> skils = skilsRepository.findById(id);
 		Set<Level> levels = new HashSet();
 		for (Level level : skils.get().getLevels())
-			if(!level.isRemoved())
+			if (!level.isRemoved())
 				levels.add(level);
 		skils.get().setLevels(levels);
 		return skils.get();
@@ -116,27 +113,24 @@ public class SoftSkilsController {
 		skilsRepository.save(skils);
 		return skils;
 	}
-	//
+
+	// update Level et skils
 	@RequestMapping(value = "/skils/level/{id}", method = RequestMethod.PUT)
 	public SoftSkill updatelevel(@PathVariable Long id, @RequestBody SoftSkill skils) {
-		//Optional<SoftSkill> softSkill = skilsRepository.findById(skils.getIdSoftSkill());
-		for (Level level : skils.getLevels())
-			if(level.getIdLevel() == id) {
-				for (Level level2 : skils.getLevels())
-					if ((level.getDegree() == level2.getDegree()) &&( !level2.isRemoved()) &&((level.getIdLevel() != level2.getIdLevel())))
-						throw new RuntimeException("level  " + level.getDegree() + " existe deja");
-					else {
+		Optional<SoftSkill> softSkill = skilsRepository.findById(skils.getIdSoftSkill());
+		for (Level updlevel : skils.getLevels()) {
+			for (Level level : softSkill.get().getLevels())
+				if ((updlevel.getDegree() == level.getDegree()) && (!level.isRemoved())
+						&& ((updlevel.getIdLevel() != level.getIdLevel())))
+					throw new RuntimeException("level  " + updlevel.getDegree() + " existe deja");
 
-						level.setSoftSkill(skils);
-
-					}
-			}
-			else
-				level.setSoftSkill(skils);
-			
+			updlevel.setSoftSkill(skils);
+		}
 		skilsRepository.save(skils);
 		return skils;
 	}
+
+	// update Skil
 	@RequestMapping(method = RequestMethod.PUT, value = "/skils/{id}/update")
 	public SoftSkill SkilsUpdate(@PathVariable Long id, @RequestBody SoftSkill skils) {
 		SoftSkill softSkill = skilsRepository.getsoftSkill(skils.getLabel());
@@ -155,12 +149,13 @@ public class SoftSkilsController {
 		skilsRepository.save(skils);
 		return skils;
 	}
+
 	// suppression d'un level
 	@RequestMapping(value = "/skils/{id}/remove", method = RequestMethod.PUT)
 	public SoftSkill updateSkilsLevel(@PathVariable Long id, @RequestBody SoftSkill skils) {
 		for (Level level : skils.getLevels())
 			level.setSoftSkill(skils);
-	skilsRepository.save(skils);
+		skilsRepository.save(skils);
 		return skils;
 	}
 

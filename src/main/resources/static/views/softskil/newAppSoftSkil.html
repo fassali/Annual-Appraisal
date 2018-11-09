@@ -11,25 +11,28 @@
 				<th>desciption</th>
 			</tr>
 		</thead>
-		<tbody ng-repeat="sk in skils">
+		<tbody ng-repeat="(id, sk) in skils">
 
 			<tr >
 				<td rowspan="{{sk.levels.length + 1}}">{{ sk.idSoftSkill }}</td>
-				<td rowspan="{{sk.levels.length + 1}}">{{ sk.label
-					}}</td>
+				<td rowspan="{{sk.levels.length + 1}}">{{ sk.label }}</td>
 					<td rowspan="{{sk.levels.length + 1}}">{{ sk.code}}</td>
 			</tr>
+			
 
-
-			<tr ng-repeat="meaning in sk.levels">
+			<tr ng-repeat="(key, meaning)  in sk.levels">
 
 				<td>{{ meaning.degree }}</td>
 				<td>{{ meaning.mean }}</td>
 					 <td>
-			<input  type="checkbox" ng-model="skilSelected" ng-checked="exist(meaning)" 
-			ng-click="toggleSelection(meaning)" >
+					
+			<input  type="radio" name="{{ sk.label }}"  ng-checked="exist(meaning)"
+			 ng-click="selectedVa(meaning)">  
+			<!--  ng-checked="exist(meaning)" ng-click="toggleSelection(meaning)" -->
 					</td>
 			</tr>
+			
+			
 		</tbody>
 	</table>
 
@@ -47,4 +50,4 @@
 		</ul>
 	</div>
 	
-	{{skilSelected}}
+	{{skilSelectedd}}
