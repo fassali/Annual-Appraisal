@@ -52,6 +52,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
            url: '/apskil/save',
            templateUrl: 'views/softskil/newAppSoftSkil.html',
            controller  :   "newApSoftSkilsCtrl"
+       })
+        .state('synthesis', {
+           url: '/sysnthesis',
+           templateUrl: 'views/Syntesis/syntesis.html',
+           controller  :  "syntesisCtrl"
        });
 		
 	    $stateProvider.state('login',{
