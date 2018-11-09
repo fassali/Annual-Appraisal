@@ -22,14 +22,17 @@
 
 						$scope.skils = data.content;
 						$scope.skils.forEach(function(elementt) {
+							elementt.levels.sort(function (a, b) {
+								  return b.degree - a.degree;
+								});
 							elementt.levels.forEach(function(element) {
-								  element.checked = false;
+								
 								  element.skil = elementt.idSoftSkill;
 							});
 						});
 						$scope.totalePages = data.totalPages;
 						$scope.pages = new Array(data.totalPages);
-
+						
 					});
 		}
 //		skilsDataService.gestAllSkils().then(function(data) {
@@ -39,13 +42,13 @@
 //		});
 		$scope.exist = function(item) {
 
-//			for (var i = 0; i < $scope.skilSelectedd.length; i++) {
-//				if ($scope.skilSelectedd[i].idLevel == item.idLevel)
-//					return true;
-//			}
-//			return false;
+			for (var i = 0; i < $scope.skilSelectedd.length; i++) {
+				if ($scope.skilSelectedd[i].idLevel == item.idLevel)
+					return true;
+			}
+			return false;
 
-			return item.checked;
+			
 		}
 
 		$scope.toggleSelection = function(item) {

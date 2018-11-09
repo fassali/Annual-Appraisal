@@ -298,6 +298,11 @@ caption{
 	height: 300px;
 	
 }
-.systh:focus {
+.systh:focus  , .evolution:focus{
 	background-color: #c0c0c0;
+}
+
+.evolution{
+	width: 100%;
+	height: 200px;
 }
