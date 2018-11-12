@@ -39,7 +39,7 @@ public class ApEmploye implements Serializable {
 
     private String tbImproved;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "apEmploye", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<ApFeedBack> apFeedBacks = new HashSet<>(0);
 
