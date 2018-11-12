@@ -12,4 +12,6 @@ import com.ymagis.appraisal.entities.ApFeedBack;
 public interface ApFeedbackRepository extends JpaRepository<ApFeedBack, Long> {
 
 	List<ApFeedBack> namedFindAllApFeedBacksByApEmploye(@Param("idApEmp") Long idApEmp);
+
+
 }

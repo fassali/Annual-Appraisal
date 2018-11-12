@@ -1,5 +1,7 @@
 package com.ymagis.appraisal.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
@@ -14,8 +16,8 @@ public class ApFeedBack implements Serializable {
     @JoinColumn(name = "id_fd_back")
     private FeedBack feedBack;
 
+    @JsonIgnore
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    //@JsonIgnore
     @JoinColumn(name = "id_ap_emp")
     private ApEmploye apEmploye;
 

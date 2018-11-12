@@ -15,4 +15,7 @@ public interface ApEmployeRepository extends JpaRepository<ApEmploye, Long> {
             " and apEmp.employe = :emp")
     public ApEmploye findApEmployeByAnnualSessionAndEmploye(@Param("annSess")AnnualSession annualSession, @Param("emp")Employe employe);
 
+    @Query("select apEmp from ApEmploye apEmp where apEmp.idApEmp = :idApEmp")
+    public ApEmploye findApEmployeByIdApEmp(@Param("idApEmp") Long idApEmp);
+
 }
