@@ -87,6 +87,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	        controller:'ProfilController'
 	    });
 	    
+	    $stateProvider.state('feedbacks',{
+	        url:'/feedback',
+	        templateUrl:'views/feedbacks.html',
+	        controller:'feedbackCtrl'
+	    });
+	    
 	    $stateProvider.state('apObjEmp',{
 	        url:'/apObjEmp',
 	        templateUrl:'views/ApObjEmp/ApObjEmp.html',
