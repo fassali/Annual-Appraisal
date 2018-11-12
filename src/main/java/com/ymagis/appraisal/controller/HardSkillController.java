@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ymagis.appraisal.entities.ApEmploye;
 import com.ymagis.appraisal.entities.ApHardSkill;
+import com.ymagis.appraisal.repository.ApEmployeRepository;
 import com.ymagis.appraisal.repository.HardSkillRepository;
 
 @RestController
@@ -22,6 +24,9 @@ public class HardSkillController {
 
 	@Autowired
 	private HardSkillRepository repository;
+	
+	@Autowired
+	private ApEmployeRepository appRepository;
 
 	@RequestMapping(value = "/appraisal/{id}", method = RequestMethod.GET)
 	List<ApHardSkill> getByAppraisal(@PathVariable("id") Long id) {
@@ -33,10 +38,15 @@ public class HardSkillController {
 		return repository.findAll();
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ApHardSkill save(@RequestBody ApHardSkill model) {
-		repository.save(model);
-		return model;
+	@RequestMapping(value = "/save/{app_id}", method = RequestMethod.POST)
+	public ApHardSkill save(@PathVariable(value = "app_id") Long appId, @RequestBody ApHardSkill model) {
+		Optional<ApEmploye> appraisal = appRepository.findById(appId);
+		if(appraisal.isPresent()) {
+			model.setApEmploye(appraisal.get());
+			repository.save(model);
+			return model;
+		}
+		return null;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

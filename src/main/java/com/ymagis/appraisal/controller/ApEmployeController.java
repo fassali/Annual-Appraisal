@@ -1,6 +1,8 @@
 package com.ymagis.appraisal.controller;
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ymagis.appraisal.entities.AnnualSession;
 import com.ymagis.appraisal.entities.ApEmploye;
+import com.ymagis.appraisal.entities.FeedBack;
 import com.ymagis.appraisal.repository.ApEmployeRepository;
 
 @RestController
@@ -36,7 +39,14 @@ public class ApEmployeController {
 		return appEmp;
 	}
 	
-	
+	@RequestMapping(value = "appraisal/{id}", method = RequestMethod.GET)
+	ApEmploye get(@PathVariable(value = "id") Long id) throws Exception {
+		Optional<ApEmploye> item = apEmployeRepository.findById(id);
+		if (item.isPresent()) {
+			return item.get();
+		}
+		return null;
+	}
 	
 		
 		

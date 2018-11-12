@@ -22,12 +22,16 @@ app.service('hardSkillService', function($http) {
 		return $http.delete(that.baseUrl + "/" + id);
 	};
 
-	that.save = function(model) {
-		return $http.post(that.baseUrl + "/save", model);
+	that.save = function(app_id, model) {
+		return $http.post(that.baseUrl + "/save/" + app_id, model);
 	};
 	
 	that.getRatings = function() {
 		return $http.get("/Ratings");
+	};
+	
+	that.getAppraisal = function(id) {
+		return $http.get("/appraisal/" + id);
 	};
 });
 

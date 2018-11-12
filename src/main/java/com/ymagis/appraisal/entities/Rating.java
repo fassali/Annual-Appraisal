@@ -18,7 +18,7 @@ public class Rating implements Serializable {
     private String label;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "rating",cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "rating", fetch=FetchType.EAGER)
     private Set<ApHardSkill> apHardSkills = new HashSet<>(0);
 
     @JsonIgnore
