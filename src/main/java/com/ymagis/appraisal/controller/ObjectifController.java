@@ -67,7 +67,7 @@ public class ObjectifController {
     }
 
     //Mettre à jour la mention rating et commenatire pour les objectifs de l'année dernière
-    @RequestMapping(value = "/Objectives", method = RequestMethod.PUT)
+    @PutMapping(value = "/Objectives")
     public boolean updateObjEmp(@RequestBody List<ApObjEmp> listObj) {
         if(null == listObj || listObj.isEmpty()){
             throw new RuntimeException("list of objectives is empty");
