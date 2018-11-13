@@ -2,11 +2,14 @@ package com.ymagis.appraisal.controller;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.ymagis.appraisal.entities.*;
 import com.ymagis.appraisal.repository.ApEmployeRepository;
+import com.ymagis.appraisal.repository.EmployeRepository;
 import com.ymagis.appraisal.repository.FeedbackRepository;
 import com.ymagis.appraisal.service.IFeedBackService;
 import com.ymagis.appraisal.vo.FeedBackVO;
@@ -32,19 +35,22 @@ public class ApFeedbackController {
 	@Autowired
 	private IFeedBackService feedBackService;
 
+	@Autowired
+	private EmployeRepository employeRepository;
+
 	@GetMapping(value = "/apfeedbacks")
 	public List<ApFeedBack> getApFeedBacks() {
 		return repository.findAll();
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/apfeedbacks/save")
+	@PostMapping(value = "/apfeedbacks/save")
 	public ApFeedBack save(@RequestBody ApFeedBack model) {
 		repository.save(model);
 		return model;
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/apfeedbacks/update/{id}")
+	@PutMapping(value = "/apfeedbacks/update/{id}")
 	public ApFeedBack update(@RequestBody ApFeedBack model, @PathVariable("id") Long id) {
 		model.setIdApFdBach(id);
 		repository.save(model);
@@ -66,7 +72,7 @@ public class ApFeedbackController {
 			if(null != apFeedBacks && !apFeedBacks.isEmpty()){
 				List<ApFeedBack> listFdb = new ArrayList<>(apFeedBacks);
 				listFeedBack = feedBackService.fillFeedBackVOFromApFds(listFdb);
-				Page<FeedBackVO> feedbackPage = new PageImpl<FeedBackVO>(listFeedBack, PageRequest.of(page, size), listFeedBack.size());
+				Page<FeedBackVO> feedbackPage = new PageImpl<FeedBackVO>(listFeedBack, PageRequest.of(page, size, Sort.by("idFdb").ascending()), listFeedBack.size());
 				return feedbackPage;
 			}else {
 				Page<FeedBackVO> feedbackPage = feedBackService.getFeedBacks(page, size);
@@ -79,23 +85,40 @@ public class ApFeedbackController {
 }
 
 	//Mettre à jour la mention rating et commenatire pour les objectifs de l'année dernière
-	@RequestMapping(value = "/Objectives", method = RequestMethod.PUT)
-	public boolean saveApFeedb(@RequestBody List<FeedBackVO> listApFdb, @RequestBody ApEmploye apEmploye) {
+	@PutMapping(value = "/saveApFeedbacks/{idApEmp}")
+	public boolean saveApFeedb(@RequestBody List<FeedBackVO> listApFdb, @PathVariable("idApEmp") Long idApEmp) {
+		ApEmploye apEmploye = apEmployeRepository.findApEmployeByIdApEmp(idApEmp);
+		Employe employe = apEmploye.getEmploye();
 		if(null == listApFdb || listApFdb.isEmpty()){
 			throw new RuntimeException("list of feedbacks is empty");
 		}else{
 			Set<ApFeedBack> apFeedbacksEmp = apEmploye.getApFeedBacks();
 			if(null != apFeedbacksEmp && !apFeedbacksEmp.isEmpty()){
 				Set<ApFeedBack> apFeedBackEmp = feedBackService.fillApFdbFromVO(apFeedbacksEmp, listApFdb, apEmploye);
-				repository.saveAll(apFeedBackEmp);
+				List<ApEmploye> appEmpList =new ArrayList<> (employe.getApEmployes());
+				for(int j = 0; j < appEmpList.size(); j++) {
+					if(appEmpList.get(j).getIdApEmp()==idApEmp) {
+						appEmpList.get(j).setApFeedBacks(apFeedBackEmp);
+					}
+				}
+				Set<ApEmploye> apEmps = appEmpList.stream().collect(Collectors.toSet());
+				employe.setApEmployes(apEmps);
+				employeRepository.save(employe);
+				//repository.saveAll(apFeedBackEmp);
 			}else{
 				Set<ApFeedBack> apFeedBackEmp = feedBackService.fillApFdbFromVO(null, listApFdb, apEmploye);
-				repository.saveAll(apFeedBackEmp);
+				List<ApEmploye> appEmpList =new ArrayList<> (employe.getApEmployes());
+				for(int j = 0; j < appEmpList.size(); j++) {
+					if(appEmpList.get(j).getIdApEmp()==idApEmp) {
+						appEmpList.get(j).setApFeedBacks(apFeedBackEmp);
+					}
+				}
+				Set<ApEmploye> apEmps = appEmpList.stream().collect(Collectors.toSet());
+				employe.setApEmployes(apEmps);
+				employeRepository.save(employe);
+				//repository.saveAll(apFeedBackEmp);
 			}
-
 			return true;
 		}
 	}
-
-
 }
