@@ -70,6 +70,33 @@
 							return err.data.message;
 						});
 			}
+			//get AppEmp
+			this.appEmployer=function(id){
+		        var promise1=$http({
+		            method: 'GET',
+		            url: "http://localhost:8080/appEmployer/"+id
+		            });
+		        var promise2=promise1.then(function(response){
+		        	return response.data;
+		        },function(err){
+		            console.log(err);
+
+		        });
+		     return promise2;
+		    }
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
 	})
 

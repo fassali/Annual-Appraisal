@@ -7,7 +7,7 @@
 		
 		
         console.log($rootScope.appEmp);
-        $scope.employer=$rootScope.appEmp.data.employe;
+        $scope.employer=$rootScope.employerSelected;
 		 
 		var appDate = new Date();
 		$scope.dayAnn=appDate.getDate();
