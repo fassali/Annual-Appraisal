@@ -105,6 +105,7 @@ public class EmployeController {
 			return appSession;
 		} else {
 			ApEmploye appEmp = new ApEmploye();
+			appEmp.setStatus("en cour");
 			appEmp.setAnnualSession(session);
 			appEmp.setEmploye(employeur);
 			apEmployer.save(appEmp);
