@@ -16,13 +16,13 @@ public class ApEmploye implements Serializable {
     private Long idApEmp;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    //@JsonIgnore
-    @JoinColumn(name="id_ann")
+    @JsonIgnore
+//    @JoinColumn(name="id_ann")
     private AnnualSession annualSession;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    //@JsonIgnore
-    @JoinColumn(name="id_emp")
+    @JsonIgnore
+//    @JoinColumn(name="id_emp")
     private Employe employe;
 
     private String addFBack;
@@ -39,7 +39,7 @@ public class ApEmploye implements Serializable {
 
     private String tbImproved;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "apEmploye", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<ApFeedBack> apFeedBacks = new HashSet<>(0);
 

@@ -19,6 +19,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     templateUrl : 'views/startSession.html',
                     controller: 'annualSessController'
                 })
+            .state('feedb',
+                {
+                    url : '/feedb',
+                    templateUrl : 'views/feedBack/feedBackEmp.html',
+                    controller: 'fdbController'
+                })
                 
      $stateProvider.state('competencies',
 			{

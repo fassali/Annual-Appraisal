@@ -48,23 +48,15 @@ public class ObjectifController {
             Set<ApObjEmp> apObjEmps = apEmploye.getApObjEmps();
             if(null != apObjEmps && !apObjEmps.isEmpty()){
 
-               /* SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
-                for(ApObjEmp elt : apObjEmps){
-                    Date date = elt.getDeadLine();
-                    String s = formatter.format(date);
-                    date = formatter.parse(s);
-                    elt.setDeadLine(date);
-                }*/
+                List<ApObjEmp> listObj = new ArrayList<>(apObjEmps);
+                //Recuperer la liste des pages des objectifs definient l'année dernière
+                Page<ApObjEmp> objectivePage = new PageImpl<ApObjEmp>(listObj, PageRequest.of(page, size), apObjEmps.size());
+                return objectivePage;
+            } else{
+                throw new RuntimeException("list of objectives is empty");
             }
-            List<ApObjEmp> listObj = new ArrayList<>(apObjEmps);
-
-            //Recuperer la liste des pages des objectifs definient l'année dernière
-            Page<ApObjEmp> objectivePage = new PageImpl<ApObjEmp>(listObj, PageRequest.of(page, size), apObjEmps.size());
-            return objectivePage;
-        }else{
-            throw new RuntimeException("list of objectives is empty");
         }
+        return null;
     }
 
     //Liste des ratings
@@ -75,13 +67,11 @@ public class ObjectifController {
     }
 
     //Mettre à jour la mention rating et commenatire pour les objectifs de l'année dernière
-    @RequestMapping(value = "/Objectives", method = RequestMethod.PUT)
+    @PutMapping(value = "/Objectives")
     public boolean updateObjEmp(@RequestBody List<ApObjEmp> listObj) {
         if(null == listObj || listObj.isEmpty()){
             throw new RuntimeException("list of objectives is empty");
         }else{
-            /*String employe = listObj.get(0).getApEmploye().getEmploye().getFirstName().concat(" ")
-                    .concat(listObj.get(0).getApEmploye().getEmploye().getLastName());*/
             objectifRepository.saveAll(listObj);
             return true;
         }

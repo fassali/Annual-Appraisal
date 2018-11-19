@@ -158,37 +158,20 @@
 			 	 	 	    		restart();
 			 	 	 	    	});
 			 	 	 	       }
-			 	 	      
-			 	 	  $scope.newAppEmp=function(idEmp){
-			 	 		EmployersDatasrv.editEmployer(idEmp)
-						.then(function (data) {
-				 				$scope.employerSelected= data.data;
-				 				//find the session in progress
-				 				AppEmployerDatasrv.findSession()
-				 				.then(function (data) {
-				 					$scope.session=data;
-				 					AppEmployerDatasrv.addApEmp($scope.appEmp)
-				 					.then(function (data) {
-				 						$rootScope.appEmp.annualSession=$scope.session;
-				 						$rootScope.appEmp.employe=$scope.employerSelected;
-				 						$scope.id=data.data.idApEmp;
-				 						AppEmployerDatasrv.updateAppEmployer($rootScope.appEmp,$scope.id)
-				 						.then(function (data) {
-				 							$rootScope.appEmp=data;
-				 							document.location.href="http://localhost:8080/#!/annualAppraisal";
-				 							console.log($rootScope.appEmp);
-				 						});
-
-				 					});
-				 				});
-				 				console.log($scope.employerSelected);
-				 			}, function (err) {
+ 
+			 	 	    $scope.newAppEmp=function(idEmp){
+			 	 	    	EmployersDatasrv.appEmployer(idEmp)
+							.then(function (data) {	
+								$rootScope.appEmp=data;
+								EmployersDatasrv.editEmployer(idEmp)
+								.then(function (resp) {
+									$rootScope.employerSelected=resp.data;
+									document.location.href="http://localhost:8080/#!/annualAppraisal";
+								});
+					 			}, function (err) {
 				 				console.log(err);
 				 			})
-			 	 		  
-			 	 	  }    
-			 	 	      
-			 	 	  
+			 	 	  } 
 			 	 	      
 			  
 	
